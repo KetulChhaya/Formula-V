@@ -1,0 +1,11 @@
+import * as d3 from "d3";
+export const loadData = async () => {
+  const drivers = await d3.csv("/data/drivers.csv");
+  const races = await d3.csv("/data/races.csv");
+  const lapTimes = await d3.csv("/data/lap_times.csv");
+  const qualifying = await d3.csv("/data/qualifying.csv");
+  const results = await d3.csv("/data/results.csv");
+  const pitStops = await d3.csv("/data/pit_stops.csv");
+
+  return { drivers, races, lapTimes, qualifying, results, pitStops };
+};

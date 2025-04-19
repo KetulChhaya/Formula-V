@@ -8,6 +8,7 @@ import QualifyToFinalPosition from "./components/qualify-to-final-position/Quali
 import Layout from "./components/utils/Layout";
 import Home from "./components/utils/Home";
 import Footer from "./components/utils/Footer";
+import ConstructorDominance from "./components/constructor-dominance/constructor-dominance";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 element={<QualifyToFinalPosition />}
               />
               <Route path="/conversion-rates" element={<ConversionRates />} />
+              <Route path="/constructor-dominance" element={<ConstructorDominance />}
             </Route>
           </Routes>
         </main>

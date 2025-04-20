@@ -1,6 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Viz1 from "./components/viz1/Viz1";
 import ConversionRates from "./components/conversion-rates/conversion-rates";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
@@ -25,7 +23,7 @@ function App() {
                 element={<QualifyToFinalPosition />}
               />
               <Route path="/conversion-rates" element={<ConversionRates />} />
-              <Route path="/constructor-dominance" element={<ConstructorDominance />}
+              <Route path="/constructor-dominance" element={<ConstructorDominance />} />
             </Route>
           </Routes>
         </main>

@@ -23,6 +23,9 @@ export default function Navbar() {
             <Link to={"/conversion-rates"}>Conversion Rates</Link>
           </li>
           <li className="hover:text-white-100 cursor-pointer">
+            <Link to={"/constructor-dominance"}>Constructor Dominance</Link>
+          </li>
+          <li className="hover:text-white-100 cursor-pointer">
             <Link to={"/qualifying-to-final-position"}>Qualifying to Final Position</Link>
           </li>{" "}
         </ul>

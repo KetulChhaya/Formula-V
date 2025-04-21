@@ -1,17 +1,9 @@
-// src/components/QualifyToFinalPosition/QualifyToFinalPosition.js
 import React, { useEffect, useState, useRef } from "react";
 import * as d3 from "d3";
 import { sankey, sankeyLinkHorizontal, sankeyJustify } from "d3-sankey";
 import { loadData } from "../../utils/data";
 import Dropdown from "../utils/Dropdown";
 import { constructorColors } from "../../utils/generateColorPallete";
-
-const teamLogos = {
-  ferrari: "/asset/team-logo/ferrari.webp",
-  red_bull: "/asset/team-logo/redbull.webp",
-  mercedes: "/asset/team-logo/mercedes.webp",
-  // Add more team logos here
-};
 
 const constructorColorMap = new Map();
 
@@ -34,6 +26,8 @@ const QualifyToFinalPosition = () => {
   useEffect(() => {
     loadData().then(({ races, drivers, qualifying, results, constructors }) => {
       console.log("Races", races);
+      const defaultYearRaces = races.filter((r) => r.year === selectedYear);
+      setRaces(defaultYearRaces);
 
       // Suppose you have a list of constructors
       constructors.forEach((name, index) => {
@@ -48,23 +42,12 @@ const QualifyToFinalPosition = () => {
       );
       setAllRaces(races);
       setYears(uniqueYears);
-      // setSelectedYear(); // ✅ default year
       setDrivers(drivers);
       setQualifying(qualifying);
       setResults(results);
       setConstructors(constructors);
 
       console.log("Constructors Length", constructors.length, constructors);
-
-      // Filter races by default year
-      const defaultYearRaces = races.filter((r) => r.year === 2024);
-      setRaces(defaultYearRaces);
-
-      // setRaces(races.slice(0, 20));
-      // setDrivers(drivers);
-      // setQualifying(qualifying);
-      // setResults(results);
-      // setConstructors(constructors);
     });
   }, []);
 
@@ -72,13 +55,10 @@ const QualifyToFinalPosition = () => {
     if (!selectedRace || qualifying.length === 0 || results.length === 0)
       return;
 
-    // const svg = d3.select(svgRef.current);
-
     const svg = d3
       .select(svgRef.current)
       .attr("width", width)
-      .attr("height", height + 80); // extra space for bottom text
-
+      .attr("height", height + 80);
     svg.selectAll("*").remove();
 
     const qualMap = new Map();
@@ -159,11 +139,8 @@ const QualifyToFinalPosition = () => {
     });
 
     graph.nodes.forEach((node) => {
-      node.y1 = node.y0 + 50; // force height = 50px
+      node.y1 = node.y0 + 50;
     });
-
-    // console.log(graph.links[0]);
-    // console.log(graph.nodes[0]);
 
     const driverMap = new Map(
       drivers.map((d) => [d.driverId, `${d.forename} ${d.surname}`])
@@ -260,14 +237,14 @@ const QualifyToFinalPosition = () => {
       .data(graph.nodes)
       .join("text")
       .attr("class", "position-on-node")
-      .attr("x", (d) => (d.x0 + d.x1) / 2) // center horizontally over rect
-      .attr("y", (d) => (d.y0 + d.y1) / 2) // center vertically over rect
+      .attr("x", (d) => (d.x0 + d.x1) / 2)
+      .attr("y", (d) => (d.y0 + d.y1) / 2)
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("font-size", 10)
       .attr("font-weight", "bold")
-      .attr("fill", "white") // white on black for contrast
-      .text((d) => d.name); // this will be Q1, P5, etc.
+      .attr("fill", "white")
+      .text((d) => d.name);
 
     const qNodes = graph.nodes.filter((d) => d.name.startsWith("Q"));
     console.log("Qualifying nodes for logo:", qNodes);
@@ -281,7 +258,7 @@ const QualifyToFinalPosition = () => {
       .attr(
         "xlink:href",
         "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=pexels-souvenirpixels-414612.jpg&fm=jpg"
-      ) // your static image
+      )
       .attr("x", (d) => d.x0 - 40)
       .attr("y", (d) => (d.y0 + d.y1) / 2 - 10)
       .attr("width", 20)
@@ -299,7 +276,7 @@ const QualifyToFinalPosition = () => {
       .attr("text-anchor", "end")
       .text((d) => {
         const link = graph.links.find((l) => l.target.name === d.name);
-        if (!link) return ""; // if no link, return blank
+        if (!link) return "";
         const constructorId = link.constructorId;
         const constructorName = constructorNameMap
           .get(constructorId)
@@ -310,7 +287,7 @@ const QualifyToFinalPosition = () => {
           )
           .join(" ");
 
-        return constructorName; // show only P5, P6, etc.
+        return constructorName;
       })
       .attr("fill", "white")
       .attr("font-size", 14)
@@ -321,7 +298,7 @@ const QualifyToFinalPosition = () => {
       .selectAll("text")
       .data(graph.nodes)
       .join("text")
-      .attr("x", (d) => d.x1 + 10) // place text right of the node
+      .attr("x", (d) => d.x1 + 10)
       .attr("y", (d) => (d.y0 + d.y1) / 2)
       .attr("dy", "0.1em")
       .attr("text-anchor", "start")
@@ -329,31 +306,11 @@ const QualifyToFinalPosition = () => {
       .attr("fill", "#fff")
       .text((d) => {
         const link = graph.links.find((l) => l.source.name === d.name);
-        if (!link) return ""; // if no link, return blank
+        if (!link) return "";
         const driverId = link.source.sourceLinks[0].driverId;
         const driverName = driverMap.get(driverId);
-        return driverName || ""; // if no constructorName, return blank
+        return driverName || "";
       });
-
-    // const captions = [
-    //   { label: "QP", x: 20 },
-    //   { label: "Driver", x: 100 },
-    //   { label: "Constructor", x: 1000 },
-    //   { label: "FP", x: 1100 }
-    // ];
-
-    // svg.append("g")
-    //   .selectAll("text.caption")
-    //   .data(captions)
-    //   .join("text")
-    //   .attr("class", "caption")
-    //   .attr("x", d => d.x)
-    //   .attr("y", 20) // top row
-    //   .attr("text-anchor", "start")
-    //   .attr("font-size", "12px")
-    //   .attr("font-weight", "600")
-    //   .attr("fill", "#ccc")
-    //   .text(d => d.label);
 
     svg
       .append("g")
@@ -367,7 +324,7 @@ const QualifyToFinalPosition = () => {
       .join("text")
       .attr("class", "caption-label")
       .attr("x", (d) => d.x)
-      .attr("y", 20) // control top spacing here
+      .attr("y", 20)
       .attr("text-anchor", (d) => d.anchor)
       .attr("fill", "#555")
       .attr("font-size", 14)
@@ -377,11 +334,11 @@ const QualifyToFinalPosition = () => {
     svg
       .append("text")
       .attr("x", width / 2)
-      .attr("y", height + 40) // Place it *below* the SVG main area
+      .attr("y", height + 40)
       .attr("text-anchor", "middle")
       .attr("font-size", 16)
       .attr("font-weight", "bold")
-      .attr("fill", "#000") // soft gray or white
+      .attr("fill", "#000")
       .text(`${selectedRaceLabel.toUpperCase()}`);
   }, [selectedRace, qualifying, results, drivers, constructors]);
 
@@ -394,7 +351,6 @@ const QualifyToFinalPosition = () => {
     <div>
       <div className="max-w-7xl m-auto mt-10">
         <h2 className="h2 font-sans text-2xl font-bold text-slate-950">
-          {/* Drivers' Standpoint from Qualifying to Final Position */}
           🥇 Where You Start Isn’t Always Where You Finish
         </h2>
         <div className="flex justify-start gap-10">
@@ -404,9 +360,9 @@ const QualifyToFinalPosition = () => {
               options={years.map((y) => ({ value: y, label: y }))}
               onSelect={(year) => {
                 setSelectedYear(year);
-                const filtered = allRaces.filter((r) => r.year === year); // `allRaces` needs to be stored
+                const filtered = allRaces.filter((r) => r.year === year);
                 setRaces(filtered);
-                setSelectedRace(null); // reset selected race
+                setSelectedRace(null);
               }}
               selectedOption={selectedYear}
             />

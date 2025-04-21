@@ -19,7 +19,7 @@ const Home = () => {
       route: "/championship-battle-trends",
     },
     {
-      title: "Qualifying to Final Sankey",
+      title: "Qualifying to Final Perfomance",
       description: "How drivers moved from grid to finish – visualized.",
       route: "/qualifying-to-final-position",
     },
@@ -37,7 +37,7 @@ const Home = () => {
   
   ];
   return (
-    <div className="min-h-screen bg-black text-white font-sans m-auto">
+    <div className="bg-black text-white font-sans m-auto" style={{minHeight: "69.5vh"}}>
       <div className="max-w-7xl m-auto pt-10">
       <h1 className="text-4xl font-bold mb-10 text-white-500 text-center uppercase">
         F1 Data Visualizations

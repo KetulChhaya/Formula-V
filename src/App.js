@@ -7,6 +7,7 @@ import Layout from "./components/utils/Layout";
 import Home from "./components/utils/Home";
 import Footer from "./components/utils/Footer";
 import ConstructorDominance from "./components/constructor-dominance/constructor-dominance";
+import PodiumFinishes from "./components/podium-finishes/PodiumFinishes";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               />
               <Route path="/conversion-rates" element={<ConversionRates />} />
               <Route path="/constructor-dominance" element={<ConstructorDominance />} />
+              <Route path="/podium-finishes" element={<PodiumFinishes />} />
             </Route>
           </Routes>
         </main>

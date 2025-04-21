@@ -15,9 +15,9 @@ const Layout = () => {
     //   }`}
     >
       {/* Your common container structure */}
-      <div className="max-w-8xl mx-auto px-6 py-4">
+      <div className="max-w-8xl mx-auto">
         {/* You can add a navbar here, logo, or anything else */}
-        <div className=" p-6 rounded-lg">
+        <div className="rounded-lg">
           {/* Outlet will render the active route */}
           <Outlet />
         </div>

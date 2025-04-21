@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // Generic Dropdown Component
-const Dropdown = ({ options, selectedOption, onSelect }) => {
+const Dropdown = ({ options, selectedOption, onSelect, selectedRaceLabel = null }) => {
   const [isOpen, setIsOpen] = useState(false); // State to control dropdown visibility
   const [rotateCaret, setRotateCaret] = useState(false); // State to control caret rotation
 
@@ -39,7 +39,7 @@ const Dropdown = ({ options, selectedOption, onSelect }) => {
           onClick={toggleDropdown}
         >
           <span className="w-full text-left overflow-hidden flex-1">
-            {selectedOption || "Select an option"}
+            {selectedRaceLabel ? selectedRaceLabel : selectedOption || "Select an option"}
           </span>
           <svg
             className={`ml-2.5 -mr-1.5 h-5 w-5 transform transition-transform duration-200 ${
@@ -59,7 +59,7 @@ const Dropdown = ({ options, selectedOption, onSelect }) => {
 
       {isOpen && (
         <div
-          className="origin-top-right absolute w-full left-0 mt-2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-slate-700 overflow-y-auto max-h-96"
+          className="origin-top-right absolute w-full left-0 mt-2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-slate-700 overflow-y-auto max-h-96 z-10"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="dropdown-button"

@@ -10,12 +10,14 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-red-600 text-white shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="text-3xl font-formula1 text-white-700 flex items-center">
-          Formula V &nbsp; <GiF1Car size={"2.75em"} />
-        </div>
+        <Link to={"/"}>
+          <div className="text-3xl font-formula1 text-white-700 flex items-center">
+            Formula V &nbsp; <GiF1Car size={"2.75em"} />
+          </div>
+        </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden sm:flex space-x-8 text-lg">
+        {/* <ul className="hidden sm:flex space-x-8 text-lg">
           <li className="hover:text-white-100 cursor-pointer">
             <Link to={"/"}>Home</Link>
           </li>
@@ -34,14 +36,17 @@ export default function Navbar() {
           <li className="hover:text-white-100 cursor-pointer">
             <Link to={"/qualifying-to-final-position"}>Qualifying to Final Position</Link>
           </li>{" "}
-        </ul>
+          <li className="hover:text-white-100 cursor-pointer">
+            <Link to={"/podium-finishes"}>Podium Finishes</Link>
+          </li>{" "}
+        </ul> */}
 
         {/* Hamburger Icon */}
-        <div className="sm:hidden">
+        {/* <div className="sm:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <FaX size={28} /> : <FaBars size={28} />}
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Mobile Menu */}

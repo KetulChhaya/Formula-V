@@ -22,10 +22,10 @@ const QualifyToFinalPosition = () => {
   const [qualifying, setQualifying] = useState([]);
   const [results, setResults] = useState([]);
   const [constructors, setConstructors] = useState([]);
-  const [selectedRace, setSelectedRace] = useState(null);
-  const [selectedRaceLabel, setSelectedRaceLabel] = useState(null);
+  const [selectedRace, setSelectedRace] = useState("1121");
+  const [selectedRaceLabel, setSelectedRaceLabel] = useState("Bahrain Grand Prix (2024)");
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedYear, setSelectedYear] = useState("2024");
   const [allRaces, setAllRaces] = useState([]);
 
   const width = 1600;
@@ -392,7 +392,7 @@ const QualifyToFinalPosition = () => {
 
   return (
     <div>
-      <div className="max-w-7xl m-auto">
+      <div className="max-w-7xl m-auto mt-10">
         <h2 className="h2 font-sans text-2xl font-bold text-slate-950">
           {/* Drivers' Standpoint from Qualifying to Final Position */}
           🥇 Where You Start Isn’t Always Where You Finish
@@ -420,6 +420,7 @@ const QualifyToFinalPosition = () => {
                 const rLabel = raceOptions.find((r) => r.value === raceId).label;
                 setSelectedRaceLabel(rLabel);
               }}
+              selectedRaceLabel={selectedRaceLabel}
               selectedOption={selectedRace}
             />
           </div>

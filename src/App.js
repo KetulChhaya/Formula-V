@@ -8,7 +8,7 @@ import ConversionRates from "./components/conversion-rates/conversion-rates";
 import ConstructorDominance from "./components/constructor-dominance/constructor-dominance";
 import QualifyToFinalPosition from "./components/qualify-to-final-position/QualifyToFinalPosition";
 import ChampionshipBattleTrends from "./components/championship-battle-trends/ChampionshipBattleTrends";
-
+import CareerProgression from "./components/career-pprogression/CareerProgression";
 function App() {
   return (
     <>
@@ -22,6 +22,7 @@ function App() {
               <Route path="/conversion-rates" element={<ConversionRates />} />
               <Route path="/constructor-dominance" element={<ConstructorDominance />} />
               <Route path="/championship-battle-trends" element={<ChampionshipBattleTrends />} />
+              <Route path="/career-progression" element={<CareerProgression />} />
             </Route>
           </Routes>
         </main>

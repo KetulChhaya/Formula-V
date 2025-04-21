@@ -29,6 +29,9 @@ export default function Navbar() {
             <Link to={"/championship-battle-trends"}>Championship Battle Trends</Link>
           </li>
           <li className="hover:text-white-100 cursor-pointer">
+            <Link to={"/career-progression"}>Career Progression</Link>
+          </li>
+          <li className="hover:text-white-100 cursor-pointer">
             <Link to={"/qualifying-to-final-position"}>Qualifying to Final Position</Link>
           </li>{" "}
         </ul>

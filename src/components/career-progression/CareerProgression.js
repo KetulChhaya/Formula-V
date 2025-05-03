@@ -152,14 +152,14 @@ const CareerProgression = () => {
       .call(d3.axisBottom(x).tickFormat(d3.format('d')).tickSize(-height).tickPadding(10))
       .append('text')
       .attr('x', width/2).attr('y', 40)
-      .attr('fill','#333').attr('font-size','16px').attr('font-family','Arial, sans-serif')
+      .attr('fill','#333').attr('font-size','16px').attr('font-family','Formula1, sans-serif')
       .text('Season');
 
     g.append('g')
       .call(d3.axisLeft(y).ticks(5).tickSize(-width).tickPadding(10))
       .append('text')
       .attr('transform','rotate(-90)').attr('x', -height/2+50).attr('y', -50)
-      .attr('fill','#333').attr('font-size','16px').attr('font-family','Arial, sans-serif')
+      .attr('fill','#333').attr('font-size','16px').attr('font-family','Formula1, sans-serif')
       .text('Points');
 
     g.selectAll('.domain').remove();
@@ -172,7 +172,7 @@ const CareerProgression = () => {
       .attr('y', margin.top/2)
       .attr('text-anchor','middle')
       .attr('font-size','24px').attr('font-weight','bold')
-      .attr('font-family','Arial, sans-serif').attr('fill','#222')
+      .attr('font-family','Formula1, sans-serif').attr('fill','#222')
       .text(`Career of ${info.name} (${minYear}–${maxYear})`);
 
     // line generator
@@ -221,7 +221,7 @@ const CareerProgression = () => {
       .style('position','absolute').style('background','#fff')
       .style('padding','5px 10px').style('border','1px solid #ccc')
       .style('border-radius','4px').style('box-shadow','0 2px 5px rgba(0,0,0,0.2)')
-      .style('font-family','Arial, sans-serif').style('font-size','12px')
+      .style('font-family','Formula1, sans-serif').style('font-size','12px')
       .style('display','none');
 
     ptsG.selectAll('circle')
@@ -259,25 +259,16 @@ const CareerProgression = () => {
       <div style={{ display:'flex', alignItems:'flex-start' }}>
         {/* driver selector */}
         <div style={{ marginRight:'20px', marginTop:'10px' }}>
-          <label htmlFor="driver-select" style={{
-            fontSize:'16px', fontWeight:'bold',
-            fontFamily:'Arial, sans-serif', color:'#333'
-          }}>
+          <label htmlFor="driver-select"
+                  className="mt-5 block text-sm font-medium text-gray-700 font-[Formula1]"
+          >
             Select Driver:
           </label>
           <select
             id="driver-select"
             value={selectedDriver||''}
             onChange={e=>setSelectedDriver(e.target.value)}
-            style={{
-              display:'block',padding:'12px',fontSize:'16px',
-              fontFamily:'Arial, sans-serif',borderRadius:'6px',
-              border:'1px solid #ccc',
-              background:'linear-gradient(145deg,#fff,#e6e6e6)',
-              boxShadow:'inset 0 1px 3px rgba(0,0,0,0.1)',
-              cursor:'pointer',width:'220px',outline:'none',
-              transition:'border-color 0.3s,box-shadow 0.3s'
-            }}
+            className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
             onFocus={e=>{
               e.target.style.borderColor='#4682b4';
               e.target.style.boxShadow='0 0 5px rgba(70,130,180,0.5)';
@@ -296,8 +287,8 @@ const CareerProgression = () => {
         {/* chart */}
         <svg
           ref={svgRef}
-          width="1000"
-          height="500"
+          width="1100"
+          height="600"
           style={{
             background:'#fff',
             borderRadius:'8px',

@@ -21,7 +21,7 @@ const QualifyToFinalPosition = () => {
   const [allRaces, setAllRaces] = useState([]);
 
   const width = 1200;
-  const height = 950;
+  const height = 750;
 
   useEffect(() => {
     loadData().then(({ races, drivers, qualifying, results, constructors }) => {
@@ -242,6 +242,7 @@ const QualifyToFinalPosition = () => {
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
       .attr("font-size", 10)
+      .attr("font-family", "Formula1, sans-serif")
       .attr("font-weight", "bold")
       .attr("fill", "white")
       .text((d) => d.name);
@@ -291,6 +292,7 @@ const QualifyToFinalPosition = () => {
       })
       .attr("fill", "white")
       .attr("font-size", 14)
+      .attr("font-family", "Formula1, sans-serif")
       .attr("text-transform", "capitalize");
 
     svg
@@ -303,6 +305,7 @@ const QualifyToFinalPosition = () => {
       .attr("dy", "0.1em")
       .attr("text-anchor", "start")
       .attr("font-size", 14)
+      .attr("font-family", "Formula1, sans-serif")
       .attr("fill", "#fff")
       .text((d) => {
         const link = graph.links.find((l) => l.source.name === d.name);
@@ -328,6 +331,7 @@ const QualifyToFinalPosition = () => {
       .attr("text-anchor", (d) => d.anchor)
       .attr("fill", "#555")
       .attr("font-size", 14)
+      .attr("font-family", "Formula1, sans-serif")
       .attr("font-weight", "600")
       .text((d) => d.text);
 
@@ -337,6 +341,7 @@ const QualifyToFinalPosition = () => {
       .attr("y", height + 40)
       .attr("text-anchor", "middle")
       .attr("font-size", 16)
+      .attr("font-family", "Formula1, sans-serif")
       .attr("font-weight", "bold")
       .attr("fill", "#000")
       .text(`${selectedRaceLabel.toUpperCase()}`);
@@ -350,12 +355,12 @@ const QualifyToFinalPosition = () => {
   return (
     <div>
       <div className="max-w-7xl m-auto mt-10">
-        <h2 className="h2 font-sans text-2xl font-bold text-slate-950">
+        <h2 className="h2 font-sans text-2xl font-bold text-slate-950 font-[Formula1]">
           🥇 Where You Start Isn’t Always Where You Finish
         </h2>
         <div className="flex justify-start gap-10">
           <div className="my-2 flex items-center gap-2">
-            <label className="text-xl">Select Year: </label>
+            <label className="text-xl font-[Formula1]">Select Year: </label>
             <Dropdown
               options={years.map((y) => ({ value: y, label: y }))}
               onSelect={(year) => {
@@ -369,7 +374,7 @@ const QualifyToFinalPosition = () => {
             />
           </div>
           <div className="my-2 flex items-center gap-2">
-            <label className="my-5 text-xl">Select Race: </label>
+            <label className="my-5 text-xl font-[Formula1]">Select Race: </label>
             <Dropdown
               options={raceOptions}
               onSelect={(raceId) => {

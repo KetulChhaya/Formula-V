@@ -109,7 +109,7 @@ const TrackPerformance = () => {
       .style('border','1px solid #ccc')
       .style('border-radius','4px')
       .style('pointer-events','none')
-      .style('font-family','Arial, sans-serif')
+      .style('font-family','Formula1, sans-serif')
       .style('font-size','12px')
       .style('display','none');
 
@@ -144,7 +144,7 @@ const TrackPerformance = () => {
     svg.append('text')
       .attr('x', W/2).attr('y', margin.top/2)
       .attr('text-anchor','middle')
-      .attr('font-family','Arial, sans-serif')
+      .attr('font-family','Formula1, sans-serif')
       .attr('font-weight','bold')
       .attr('font-size','20px')
       .text(`Top 10 Drivers at ${name} (2014–2024)`);
@@ -162,7 +162,7 @@ const TrackPerformance = () => {
           .attr('fill', d => color(d.driverName));
         g.append('text')
           .attr('x',18).attr('y',10)
-          .attr('font-family','Arial, sans-serif')
+          .attr('font-family','Formula1, sans-serif')
           .attr('font-size','12px')
           .text(d => d.driverName);
       });
@@ -182,44 +182,32 @@ const TrackPerformance = () => {
       padding:'40px'
     }}>
       <div style={{ marginRight:'20px' }}>
-        <label htmlFor="track-select" style={{
-          display:'block', marginBottom:'8px',
-          fontFamily:'Arial, sans-serif', fontWeight:'bold'
-        }}>
+        <label htmlFor="track-select"
+        className="block text-sm font-medium text-gray-700 font-[Formula1]" 
+        >
           Select Track:
         </label>
         <select
           id="track-select"
           value={selectedTrack||''}
           onChange={e=>setSelectedTrack(e.target.value)}
-          style={{
-            padding:'10px',fontSize:'14px',width:'220px',
-            fontFamily:'Arial, sans-serif',borderRadius:'6px',
-            border:'1px solid #ccc',background:'#fff',
-            cursor:'pointer'
-          }}
+          className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
         >
           {trackOptions.map(o=>(
             <option key={o.id} value={o.id}>{o.name}</option>
           ))}
         </select>
 
-        <label htmlFor="metric-select" style={{
-          display:'block', margin:'20px 0 8px',
-          fontFamily:'Arial, sans-serif', fontWeight:'bold'
-        }}>
+        <label htmlFor="metric-select"
+          className="mt-5 block text-sm font-medium text-gray-700 font-[Formula1]"
+        >
           Compare By:
         </label>
         <select
           id="metric-select"
           value={metric}
           onChange={e=>setMetric(e.target.value)}
-          style={{
-            padding:'10px',fontSize:'14px',width:'220px',
-            fontFamily:'Arial, sans-serif',borderRadius:'6px',
-            border:'1px solid #ccc',background:'#fff',
-            cursor:'pointer'
-          }}
+          className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
         >
           <option value="avg">Average Points</option>
           <option value="sum">Total Points</option>
@@ -228,7 +216,7 @@ const TrackPerformance = () => {
 
       <svg
         ref={svgRef}
-        width="1000"
+        width="1100"
         height="600"
         style={{
           background:'#fff',

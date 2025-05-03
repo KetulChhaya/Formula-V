@@ -134,7 +134,7 @@ const ConstructorDominance = () => {
             .attr('y', 40)
             .attr('fill', '#333')
             .attr('font-size', '16px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .text('Year');
 
         // Y-axis with gridlines and label
@@ -151,7 +151,7 @@ const ConstructorDominance = () => {
             .attr('y', -50)
             .attr('fill', '#333')
             .attr('font-size', '16px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .text('Constructor Points');
 
         // Style gridlines
@@ -172,7 +172,7 @@ const ConstructorDominance = () => {
             .attr('text-anchor', 'middle')
             .attr('font-size', '24px')
             .attr('font-weight', 'bold')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', '#222')
             .text('Constructor Points Dominance (2018–2024)');
 
@@ -182,7 +182,7 @@ const ConstructorDominance = () => {
             .attr('y', height + margin.top + 60)
             .attr('text-anchor', 'middle')
             .attr('font-size', '14px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', '#666')
             .text('Total points earned by each constructor per season, highlighting team dominance');
 
@@ -208,7 +208,7 @@ const ConstructorDominance = () => {
                     .attr('x', 20)
                     .attr('y', 12)
                     .attr('font-size', '14px')
-                    .attr('font-family', 'Arial, sans-serif')
+                    .attr('font-family', 'Formula1, sans-serif')
                     .attr('fill', '#333')
                     .text(d[1].name);
             });
@@ -254,7 +254,7 @@ const ConstructorDominance = () => {
             .style('border', '1px solid #ccc')
             .style('border-radius', '4px')
             .style('box-shadow', '0 2px 5px rgba(0,0,0,0.2)')
-            .style('font-family', 'Arial, sans-serif')
+            .style('font-family', 'Formula1, sans-serif')
             .style('font-size', '12px')
             .style('display', 'none');
     }, [constructorData, constructorIds]);
@@ -349,12 +349,7 @@ const ConstructorDominance = () => {
                 <div style={{ marginRight: '20px', marginTop: '10px' }}>
                     <label 
                         htmlFor="constructor-select" 
-                        style={{ 
-                            fontSize: '16px', 
-                            fontWeight: 'bold', 
-                            fontFamily: 'Arial, sans-serif', 
-                            color: '#333' 
-                        }}
+                        className="block text-sm font-medium text-gray-700 font-[Formula1]"
                     >
                         Highlight Constructor:
                     </label>
@@ -362,20 +357,7 @@ const ConstructorDominance = () => {
                         id="constructor-select"
                         value={selectedConstructor || 'none'}
                         onChange={(e) => setSelectedConstructor(e.target.value)}
-                        style={{
-                            display: 'block',
-                            padding: '12px',
-                            fontSize: '16px',
-                            fontFamily: 'Arial, sans-serif',
-                            borderRadius: '6px',
-                            border: '1px solid #ccc',
-                            background: 'linear-gradient(145deg, #ffffff, #e6e6e6)',
-                            boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
-                            cursor: 'pointer',
-                            width: '220px',
-                            outline: 'none',
-                            transition: 'border-color 0.3s, box-shadow 0.3s'
-                        }}
+                        className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
                         onFocus={(e) => {
                             e.target.style.borderColor = '#4682b4';
                             e.target.style.boxShadow = '0 0 5px rgba(70, 130, 180, 0.5)';
@@ -395,8 +377,8 @@ const ConstructorDominance = () => {
                 </div>
                 <svg 
                     ref={svgRef} 
-                    width="1000" 
-                    height="500" 
+                    width="1100" 
+                    height="600" 
                     style={{ 
                         background: '#fff', 
                         borderRadius: '8px', 

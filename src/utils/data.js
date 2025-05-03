@@ -1,5 +1,10 @@
 import * as d3 from "d3";
 export const loadData = async () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
   const drivers = await d3.csv("/data/drivers.csv");
   const races = await d3.csv("/data/races.csv");
   const lapTimes = await d3.csv("/data/lap_times.csv");

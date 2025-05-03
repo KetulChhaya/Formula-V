@@ -49,6 +49,11 @@ const Home = () => {
       description: "Driver DNF rates by constructor and year",
       route: "/dnf-heatmap",
     },
+    {
+      title: "Winning Margins",
+      description: "Race to the Finish: Uncover the Thrilling Margins of Victory in Formula 1’s Closest Battles!",
+      route: "/winning-margins",
+    },
   ];
   return (
     <div className="bg-black text-white font-sans m-auto" style={{minHeight: "100vh"}}>

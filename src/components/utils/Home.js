@@ -35,15 +35,10 @@ const Home = () => {
       route: "/career-progression",
     },
     {
-      title: "Track Progression",
+      title: "Track Performance",
       description: "How the drivers have performed on tracks over the years",
       route: "/track-stats",
     },
-    // {
-    //   title: "Pit Stop Efficiency Impact",
-    //   description: "How pit stop efficiency influences race outcomes",
-    //   route: "/pitstop-efficiency-impact",
-    // },
     {
       title: "DNF Heatmap",
       description: "Driver DNF rates by constructor and year",
@@ -59,11 +54,6 @@ const Home = () => {
       description: "Race to the Finish: Uncover the Thrilling Margins of Victory in Formula 1’s Closest Battles!",
       route: "/winning-margins",
     },
-    // {
-    //   title: "Thanks!",
-    //   description: "Thanks for checking out our project!",
-    //   route: "/",
-    // },
   ];
   return (
     <div className="bg-gradient-to-r from-black to-slate-900 text-white font-sans m-auto" style={{minHeight: "105vh", }}>

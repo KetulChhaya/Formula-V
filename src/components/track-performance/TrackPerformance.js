@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { loadData } from '../../utils/data';  // must return drivers, results, races, circuits, constructors
+import { loadData } from '../../utils/data';
 import * as d3 from 'd3';
 
 const TrackPerformance = () => {
@@ -78,8 +78,6 @@ const TrackPerformance = () => {
     const { name, performance } = trackData[selectedTrack];
     if (!performance.length) return;
     const data = performance;
-
-    const { validRaceIds, raceMap } = refs.current;
 
     // clear
     const svg = d3.select(svgRef.current);
@@ -178,6 +176,7 @@ const TrackPerformance = () => {
   return (
     <div style={{
       display:'flex',
+      justifyContent:'center',
       alignItems:'flex-start',
       background:'#f5f5f5',
       padding:'40px'
@@ -209,7 +208,7 @@ const TrackPerformance = () => {
           display:'block', margin:'20px 0 8px',
           fontFamily:'Arial, sans-serif', fontWeight:'bold'
         }}>
-          Sort/Size By:
+          Compare By:
         </label>
         <select
           id="metric-select"
@@ -229,7 +228,7 @@ const TrackPerformance = () => {
 
       <svg
         ref={svgRef}
-        width="900"
+        width="1000"
         height="600"
         style={{
           background:'#fff',

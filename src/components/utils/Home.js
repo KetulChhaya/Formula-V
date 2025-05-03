@@ -34,10 +34,15 @@ const Home = () => {
       description: "How drivers have progressed through their careers",
       route: "/career-progression",
     },
+    {
+      title: "Pit Stop Efficiency Impact",
+      description: "How pit stop efficiency influences race outcomes",
+      route: "/pitstop-efficiency-impact",
+    },
   
   ];
   return (
-    <div className="bg-black text-white font-sans m-auto" style={{minHeight: "69.5vh"}}>
+    <div className="bg-black text-white font-sans m-auto" style={{minHeight: "100vh"}}>
       <div className="max-w-7xl m-auto pt-10">
       <h1 className="text-4xl font-bold mb-10 text-white-500 text-center uppercase">
         F1 Data Visualizations

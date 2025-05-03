@@ -89,7 +89,7 @@ const ConstructorDominance = () => {
         if (!constructorData || !constructorIds.length) return;
 
         const svg = d3.select(svgRef.current);
-        const margin = { top: 70, right: 250, bottom: 70, left: 70 };
+        const margin = { top: 70, right: 200, bottom: 70, left: 80 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
         const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
@@ -265,7 +265,7 @@ const ConstructorDominance = () => {
 
         const svg = d3.select(svgRef.current);
         const g = svg.select('g');
-        const margin = { top: 70, right: 250, bottom: 70, left: 70 };
+        const margin = { top: 70, right: 200, bottom: 70, left: 80 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
 

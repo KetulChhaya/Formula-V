@@ -60,7 +60,7 @@ const ConversionRates = () => {
         if (!circuitData) return;
 
         const svg = d3.select(svgRef.current);
-        const margin = { top: 60, right: 100, bottom: 60, left: 60 };
+        const margin = { top: 60, right: 80, bottom: 60, left: 80 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
         const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
@@ -197,7 +197,7 @@ const ConversionRates = () => {
 
         const svg = d3.select(svgRef.current);
         const g = svg.select('g');
-        const margin = { top: 60, right: 100, bottom: 60, left: 60 };
+        const margin = { top: 60, right: 80, bottom: 60, left: 80 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
 
@@ -337,8 +337,8 @@ const ConversionRates = () => {
                 </div>
                 <svg 
                     ref={svgRef} 
-                    width="800" 
-                    height="400" 
+                    width="1000" 
+                    height="500" 
                     style={{ 
                         background: '#fff', 
                         borderRadius: '8px', 

@@ -55,7 +55,7 @@ const ChampionshipBattleTrends = () => {
 
         const svg = d3.select(svgRef.current);
         svg.selectAll('*').remove(); // Clear previous content
-        const margin = { top: 80, right: 200, bottom: 80, left: 80 };
+        const margin = { top: 80, right: 200, bottom: 80, left: 90 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
         const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);

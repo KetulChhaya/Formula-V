@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { loadData } from '../../utils/data';  // must return drivers, driver_standings, results, races, constructors
+import { loadData } from '../../utils/data';
 import * as d3 from 'd3';
 
 const CareerProgression = () => {

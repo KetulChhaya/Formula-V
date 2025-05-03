@@ -39,20 +39,25 @@ const Home = () => {
       description: "How the drivers have performed on tracks over the years",
       route: "/track-stats",
     },
-    {
-      title: "Pit Stop Efficiency Impact",
-      description: "How pit stop efficiency influences race outcomes",
-      route: "/pitstop-efficiency-impact",
-    },
+    // {
+    //   title: "Pit Stop Efficiency Impact",
+    //   description: "How pit stop efficiency influences race outcomes",
+    //   route: "/pitstop-efficiency-impact",
+    // },
     {
       title: "DNF Heatmap",
       description: "Driver DNF rates by constructor and year",
       route: "/dnf-heatmap",
     },
+    {
+      title: "Driver Contributions",
+      description: "How drivers have contributed to their teams",
+      route: "/driver-contributions",
+    },
   ];
   return (
-    <div className="bg-black text-white font-sans m-auto" style={{minHeight: "100vh"}}>
-      <div className="max-w-7xl m-auto pt-10">
+    <div className="bg-gradient-to-r from-black to-slate-900 text-white font-sans m-auto" style={{minHeight: "90vh", }}>
+      <div className="max-w-7xl m-auto pt-10" >
       <h1 className="text-4xl font-bold mb-10 text-white-500 text-center uppercase">
         F1 Data Visualizations
       </h1>
@@ -60,7 +65,7 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tiles.map((tile) => (
           <Link to={tile.route} key={tile.title}>
-            <div className="group bg-gray-900 hover:bg-red-600 transition-all duration-300 ease-in-out border-2 border-red-500 rounded-xl p-6 shadow-lg flex flex-col justify-between h-48 hover:scale-105">
+            <div className="group bg-slate hover:bg-red-600 transition-all duration-300 ease-in-out border-2 border-red-500 rounded-xl p-6 shadow-lg flex flex-col justify-between h-48 hover:scale-105">
               <div>
                 <h2 className="text-xl font-semibold text-white mb-2 group-hover:text-white">
                   {tile.title}

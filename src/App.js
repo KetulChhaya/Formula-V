@@ -10,7 +10,7 @@ import PodiumFinishes from "./components/podium-finishes/PodiumFinishes";
 import QualifyToFinalPosition from "./components/qualify-to-final-position/QualifyToFinalPosition";
 import ChampionshipBattleTrends from "./components/championship-battle-trends/ChampionshipBattleTrends";
 import CareerProgression from "./components/career-pprogression/CareerProgression";
-
+import TrackPerformance from "./components/Track-Stats/TrackPerformance";
 function App() {
   return (
     <>
@@ -26,6 +26,7 @@ function App() {
               <Route path="/podium-finishes" element={<PodiumFinishes />} />
               <Route path="/championship-battle-trends" element={<ChampionshipBattleTrends />} />
               <Route path="/career-progression" element={<CareerProgression />} />
+              <Route path="/TrackStats" element={<TrackPerformance />} />
             </Route>
           </Routes>
         {/* </main> */}

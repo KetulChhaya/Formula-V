@@ -34,6 +34,11 @@ const Home = () => {
       description: "How drivers have progressed through their careers",
       route: "/career-progression",
     },
+    {
+      title: "Track Progression",
+      description: "How the drivers have performed on tracks over the years",
+      route: "/TrackStats",
+    },
   
   ];
   return (

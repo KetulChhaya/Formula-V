@@ -9,7 +9,7 @@ import ConstructorDominance from "./components/constructor-dominance/constructor
 import PodiumFinishes from "./components/podium-finishes/PodiumFinishes";
 import QualifyToFinalPosition from "./components/qualify-to-final-position/QualifyToFinalPosition";
 import ChampionshipBattleTrends from "./components/championship-battle-trends/ChampionshipBattleTrends";
-import CareerProgression from "./components/career-pprogression/CareerProgression";
+import CareerProgression from "./components/career-progression/CareerProgression";
 import TrackPerformance from "./components/Track-Stats/TrackPerformance";
 import PitStopEfficiencyImpact from "./components/pit-stop-efficiency-impact/PitStopEfficiencyImpact";
 import DnfHeatmap from "./components/dnf-heatmap/DnfHeatmap";

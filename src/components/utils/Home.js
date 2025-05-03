@@ -44,7 +44,11 @@ const Home = () => {
       description: "How pit stop efficiency influences race outcomes",
       route: "/pitstop-efficiency-impact",
     },
-  
+    {
+      title: "DNF Heatmap",
+      description: "Driver DNF rates by constructor and year",
+      route: "/dnf-heatmap",
+    },
   ];
   return (
     <div className="bg-black text-white font-sans m-auto" style={{minHeight: "100vh"}}>

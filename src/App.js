@@ -11,6 +11,8 @@ import QualifyToFinalPosition from "./components/qualify-to-final-position/Quali
 import ChampionshipBattleTrends from "./components/championship-battle-trends/ChampionshipBattleTrends";
 import CareerProgression from "./components/career-pprogression/CareerProgression";
 import TrackPerformance from "./components/Track-Stats/TrackPerformance";
+import PitStopEfficiencyImpact from "./components/pit-stop-efficiency-impact/PitStopEfficiencyImpact";
+
 function App() {
   return (
     <>
@@ -26,7 +28,8 @@ function App() {
               <Route path="/podium-finishes" element={<PodiumFinishes />} />
               <Route path="/championship-battle-trends" element={<ChampionshipBattleTrends />} />
               <Route path="/career-progression" element={<CareerProgression />} />
-              <Route path="/TrackStats" element={<TrackPerformance />} />
+              <Route path="/track-stats" element={<TrackPerformance />} />
+              <Route path="/pitstop-efficiency-impact" element={<PitStopEfficiencyImpact />} />
             </Route>
           </Routes>
         {/* </main> */}

@@ -20,7 +20,7 @@ const QualifyToFinalPosition = () => {
   const [selectedYear, setSelectedYear] = useState("2024");
   const [allRaces, setAllRaces] = useState([]);
 
-  const width = 1600;
+  const width = 1200;
   const height = 950;
 
   useEffect(() => {
@@ -318,8 +318,8 @@ const QualifyToFinalPosition = () => {
       .data([
         { text: "QP", x: graph.nodes[0].x0 + 40, anchor: "end" },
         { text: "Driver", x: graph.nodes[0].x0 + 80, anchor: "start" },
-        { text: "Constructor", x: graph.nodes[0].x0 + 1450, anchor: "start" },
-        { text: "FP", x: 1560 },
+        { text: "Constructor", x: graph.nodes[0].x0 + 1040, anchor: "start" },
+        { text: "FP", x: 1160 },
       ])
       .join("text")
       .attr("class", "caption-label")
@@ -363,6 +363,7 @@ const QualifyToFinalPosition = () => {
                 const filtered = allRaces.filter((r) => r.year === year);
                 setRaces(filtered);
                 setSelectedRace(null);
+                setSelectedRaceLabel(null);
               }}
               selectedOption={selectedYear}
             />
@@ -381,9 +382,9 @@ const QualifyToFinalPosition = () => {
             />
           </div>
         </div>
-      </div>
       <div className="w-full m-auto text-center flex justify-center">
         <svg ref={svgRef} width={width} height={height}></svg>
+      </div>
       </div>
     </div>
   );

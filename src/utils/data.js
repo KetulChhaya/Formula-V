@@ -10,6 +10,7 @@ export const loadData = async () => {
   const constructors = await d3.csv("/data/constructors.csv");
   const seasons = await d3.csv("/data/seasons.csv");
   const driver_standings = await d3.csv("/data/driver_standings.csv");
+  const status = await d3.csv("/data/status.csv");
 
-  return { drivers, races, lapTimes, qualifying, results, pitStops, circuits, constructors, seasons, driver_standings };
+  return { drivers, races, lapTimes, qualifying, results, pitStops, circuits, constructors, seasons, driver_standings, status };
 };

@@ -12,6 +12,7 @@ import ChampionshipBattleTrends from "./components/championship-battle-trends/Ch
 import CareerProgression from "./components/career-pprogression/CareerProgression";
 import TrackPerformance from "./components/Track-Stats/TrackPerformance";
 import PitStopEfficiencyImpact from "./components/pit-stop-efficiency-impact/PitStopEfficiencyImpact";
+import DnfHeatmap from "./components/dnf-heatmap/DnfHeatmap";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/career-progression" element={<CareerProgression />} />
               <Route path="/track-stats" element={<TrackPerformance />} />
               <Route path="/pitstop-efficiency-impact" element={<PitStopEfficiencyImpact />} />
+              <Route path="/dnf-heatmap" element={<DnfHeatmap />} />
             </Route>
           </Routes>
         {/* </main> */}

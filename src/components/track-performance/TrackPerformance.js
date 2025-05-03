@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { loadData } from '../../utils/data';  // must return drivers, results, races, circuits, constructors
 import * as d3 from 'd3';
 
-const TrackPieChart = () => {
+const TrackPerformance = () => {
   const svgRef = useRef();
 
   // stash raw lookups
@@ -241,4 +241,4 @@ const TrackPieChart = () => {
   );
 };
 
-export default TrackPieChart;
+export default TrackPerformance;

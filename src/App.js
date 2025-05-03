@@ -13,6 +13,7 @@ import CareerProgression from "./components/career-pprogression/CareerProgressio
 import TrackPerformance from "./components/Track-Stats/TrackPerformance";
 import PitStopEfficiencyImpact from "./components/pit-stop-efficiency-impact/PitStopEfficiencyImpact";
 import DnfHeatmap from "./components/dnf-heatmap/DnfHeatmap";
+import DriverContributions from "./components/driver-contributions/DriverContributions";
 import WinningMargins from "./components/winning-margins/WinningMargins";
 
 function App() {
@@ -20,22 +21,39 @@ function App() {
     <>
       <div className="flex flex-col min-h-screen">
         <Navbar />
+
         {/* <main className="flex-grow"> */}
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route path="/" index element={<Home />} />
-              <Route path="/qualifying-to-final-position" element={<QualifyToFinalPosition />} />
-              <Route path="/conversion-rates" element={<ConversionRates />} />
-              <Route path="/constructor-dominance" element={<ConstructorDominance />} />
-              <Route path="/podium-finishes" element={<PodiumFinishes />} />
-              <Route path="/championship-battle-trends" element={<ChampionshipBattleTrends />} />
-              <Route path="/career-progression" element={<CareerProgression />} />
-              <Route path="/track-stats" element={<TrackPerformance />} />
-              <Route path="/pitstop-efficiency-impact" element={<PitStopEfficiencyImpact />} />
-              <Route path="/dnf-heatmap" element={<DnfHeatmap />} />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" index element={<Home />} />
+            <Route
+              path="/qualifying-to-final-position"
+              element={<QualifyToFinalPosition />}
+            />
+            <Route path="/conversion-rates" element={<ConversionRates />} />
+            <Route
+              path="/constructor-dominance"
+              element={<ConstructorDominance />}
+            />
+            <Route path="/podium-finishes" element={<PodiumFinishes />} />
+            <Route
+              path="/championship-battle-trends"
+              element={<ChampionshipBattleTrends />}
+            />
+            <Route path="/career-progression" element={<CareerProgression />} />
+            <Route path="/track-stats" element={<TrackPerformance />} />
+            <Route
+              path="/pitstop-efficiency-impact"
+              element={<PitStopEfficiencyImpact />}
+            />
+            <Route path="/dnf-heatmap" element={<DnfHeatmap />} />
+            <Route
+              path="/driver-contributions"
+              element={<DriverContributions />}
+            />
               <Route path="/winning-margins" element={<WinningMargins />} />
-            </Route>
-          </Routes>
+          </Route>
+        </Routes>
         {/* </main> */}
         <Footer />
       </div>

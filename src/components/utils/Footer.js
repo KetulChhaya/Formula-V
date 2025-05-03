@@ -2,7 +2,7 @@ import { FaFlagCheckered } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-red-600 text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-r from-red-800 to-black text-white relative overflow-hidden">
       {/* Winning stripes */}
       <div className="absolute top-0 left-0 w-full h-2 bg-white">
         <div className="w-1/4 h-full bg-white inline-block"></div>

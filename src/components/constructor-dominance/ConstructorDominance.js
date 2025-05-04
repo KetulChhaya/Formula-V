@@ -176,16 +176,6 @@ const ConstructorDominance = () => {
             .attr('fill', '#222')
             .text('Constructor Points Dominance (2018–2024)');
 
-        // Add caption at the bottom
-        svg.append('text')
-            .attr('x', margin.left + width / 2)
-            .attr('y', height + margin.top + 60)
-            .attr('text-anchor', 'middle')
-            .attr('font-size', '14px')
-            .attr('font-family', 'Formula1, sans-serif')
-            .attr('fill', '#666')
-            .text('Total points earned by each constructor per season, highlighting team dominance');
-
         // Add legend to the right of the visualization
         const legend = svg.append('g')
             .attr('transform', `translate(${margin.left + width + 50}, ${margin.top - 10})`);
@@ -338,6 +328,7 @@ const ConstructorDominance = () => {
     }, [selectedConstructor, constructorData, constructorIds]);
 
     return (
+        <>
         <div style={{ 
             display: 'flex', 
             justifyContent: 'center', 
@@ -375,6 +366,7 @@ const ConstructorDominance = () => {
                         ))}
                     </select>
                 </div>
+                <div className="flex flex-col" style={{maxWidth: "1100px"}}>
                 <svg 
                     ref={svgRef} 
                     width="1100" 
@@ -385,8 +377,11 @@ const ConstructorDominance = () => {
                         boxShadow: '0 4px 12px rgba(0,0,0,0.1)' 
                     }}
                 ></svg>
+               <h3 className="font-[Formula1] mt-5 justify-center text-center">This chart shows how many points each F1 team (constructor) earned per season. It’s a great way to see which teams were dominant in different years and how the balance of power shifted over time.</h3>
+            </div>
             </div>
         </div>
+               </>
     );
 };
 

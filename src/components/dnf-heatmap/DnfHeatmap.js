@@ -10,7 +10,8 @@ const DnfHeatmap = () => {
   const [years, setYears] = useState([]);
   const [constructors, setConstructors] = useState([]);
   const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
-  const [isConstructorDropdownOpen, setIsConstructorDropdownOpen] = useState(false);
+  const [isConstructorDropdownOpen, setIsConstructorDropdownOpen] =
+    useState(false);
   const width = 1100;
   const height = 600;
   const margin = { top: 50, right: 20, bottom: 20, left: 200 };
@@ -228,7 +229,7 @@ const DnfHeatmap = () => {
       .domain(filteredConstructorNames)
       .range([0, height - margin.top - margin.bottom])
       .padding(0);
-      
+
     const tooltip = d3
       .select("body")
       .append("div")
@@ -295,8 +296,8 @@ const DnfHeatmap = () => {
       .attr("fill", "#fff")
       .attr("font-size", "12px")
       .attr("font-family", "Formula1, sans-serif");
-    
-      g.append("g")
+
+    g.append("g")
       .call(d3.axisLeft(yScale))
       .selectAll("text")
       .attr("fill", "#fff")
@@ -332,7 +333,7 @@ const DnfHeatmap = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto mt-10 p-6 bg-gray-900 rounded-lg">
+    <div className="max-w-7xl mx-auto mt-10 p-6 bg-gray-900 rounded-lg mb-8">
       <style>{`
         .checkered-bg {
           background-image: linear-gradient(45deg, #000 25%, transparent 25%),
@@ -392,7 +393,9 @@ const DnfHeatmap = () => {
       <div className="checkered-bg p-4 rounded-lg">
         <div className="flex justify-start gap-6 mb-6">
           <div className="flex items-center gap-2">
-            <label className="text-white text-lg font-[Formula1]">Select Year:</label>
+            <label className="text-white text-lg font-[Formula1]">
+              Select Year:
+            </label>
             <div className="dropdown">
               <div
                 className="dropdown-button font-[Formula1]"
@@ -460,10 +463,21 @@ const DnfHeatmap = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center">
-          <svg ref={svgRef}></svg>
+        <div
+          className="flex flex-col justify-center"
+          style={{ maxWidth: "1100px" }}
+        >
+          <div className="flex justify-center">
+            <svg ref={svgRef}></svg>
+          </div>
         </div>
       </div>
+          <h3 className="font-[Formula1] mt-5 justify-center text-center text-white">
+            Reliability matters. This heatmap shows how often each team failed
+            to finish races (DNFs) across different seasons. It’s a window into
+            mechanical struggles and how dependable (or not) each constructor
+            was.
+          </h3>
     </div>
   );
 };

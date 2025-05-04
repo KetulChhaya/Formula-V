@@ -5,48 +5,47 @@ const Home = () => {
   const tiles = [
     {
       title: "Constructor Dominance",
-      description: "How constructors have performed over the years.",
+      description: "See which teams ruled the track each season!",
       route: "/constructor-dominance",
     },
     {
       title: "Conversion Rates",
-      description: "Percentage of drivers qualifying in the top 10 who finished in the top 10 each year",
+      description: "From pole to podium: who kept their cool under pressure?",
       route: "/conversion-rates",
     },
     {
       title: "Championship Battle Trends",
-      description: "How drivers have performed in the championship battle",
+      description: "Watch the title fight unfold race by race!",
       route: "/championship-battle-trends",
     },
     {
       title: "Qualifying to Final Perfomance",
-      description: "How drivers moved from grid to finish – visualized.",
+      description: "From grid to glory: how drivers climb or fall during the race.",
       route: "/qualifying-to-final-position",
     },
     {
       title: "Podium Finishes",
-      description:
-        "Zoom into podium finishes by driver, position, and location.",
+      description: "Spotlight on the stars: every podium, every race!",
       route: "/podium-finishes",
     },
     {
       title: "Career Progression",
-      description: "How drivers have progressed through their careers",
+      description: "Chart a driver's rise to fame, season by season.",
       route: "/career-progression",
     },
     {
       title: "Track Performance",
-      description: "How the drivers have performed on tracks over the years",
+      description: "Discover a driver's favorite battlegrounds!",
       route: "/track-stats",
     },
     {
       title: "DNF Heatmap",
-      description: "Driver DNF rates by constructor and year",
+      description: "When the going got tough: teams' breakdown battles.",
       route: "/dnf-heatmap",
     },
     {
       title: "Driver Contributions",
-      description: "How drivers have contributed to their teams",
+      description: "Team players or lone wolves: who drove the points home?",
       route: "/driver-contributions",
     },
     {

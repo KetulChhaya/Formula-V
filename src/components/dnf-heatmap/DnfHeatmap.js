@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as d3 from "d3";
 import { loadData } from "../../utils/data";
-import { constructorColorMap } from "../../utils/utils";
 
 const DnfHeatmap = () => {
   const svgRef = useRef();
@@ -11,9 +10,8 @@ const DnfHeatmap = () => {
   const [years, setYears] = useState([]);
   const [constructors, setConstructors] = useState([]);
   const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
-  const [isConstructorDropdownOpen, setIsConstructorDropdownOpen] =
-    useState(false);
-  const width = 1200;
+  const [isConstructorDropdownOpen, setIsConstructorDropdownOpen] = useState(false);
+  const width = 1100;
   const height = 600;
   const margin = { top: 50, right: 20, bottom: 20, left: 200 };
 
@@ -206,7 +204,8 @@ const DnfHeatmap = () => {
       .selectAll("text")
       .attr("fill", "#fff")
       .attr("x", -legendWidth - 8)
-      .attr("font-size", "12px");
+      .attr("font-size", "12px")
+      .attr("font-family", "Formula1, sans-serif");
 
     legendG
       .append("text")
@@ -215,6 +214,7 @@ const DnfHeatmap = () => {
       .attr("text-anchor", "middle")
       .attr("fill", "#fff")
       .attr("font-size", "12px")
+      .attr("font-family", "Formula1, sans-serif")
       .text("DNF Rate");
 
     const xScale = d3
@@ -239,6 +239,7 @@ const DnfHeatmap = () => {
       .style("border", "1px solid #ccc")
       .style("border-radius", "4px")
       .style("pointer-events", "none")
+      .style("font-family", "Formula1, sans-serif")
       .style("visibility", "hidden");
 
     console.log("Filtered Cells:", filteredCells);
@@ -251,10 +252,7 @@ const DnfHeatmap = () => {
       .attr("y", (d) => yScale(d.constructorName.toString()))
       .attr("width", xScale.bandwidth())
       .attr("height", yScale.bandwidth())
-      //   .attr("fill", d => d.total === 0 ? "transparent" : colorScale(d.rate))
       .attr("fill", (d) => colorScale(d.rate))
-      //   .attr("stroke", d => constructorColorMap[d.constructorId] || "#000")
-      //   .attr("stroke-width", 2)
       .on("mouseover", (event, d) => {
         let html =
           `<strong>${d.constructorName} (${d.year})</strong><br>` +
@@ -295,12 +293,15 @@ const DnfHeatmap = () => {
       .call(d3.axisBottom(xScale))
       .selectAll("text")
       .attr("fill", "#fff")
-      .attr("font-size", "12px");
-    g.append("g")
+      .attr("font-size", "12px")
+      .attr("font-family", "Formula1, sans-serif");
+    
+      g.append("g")
       .call(d3.axisLeft(yScale))
       .selectAll("text")
       .attr("fill", "#fff")
-      .attr("font-size", "12px");
+      .attr("font-size", "12px")
+      .attr("font-family", "Formula1, sans-serif");
 
     svg
       .append("text")
@@ -310,7 +311,8 @@ const DnfHeatmap = () => {
       .attr("fill", "#fff")
       .attr("font-size", "18px")
       .attr("font-weight", "bold")
-      .text("F1 DNF Rates by Constructor and Year (2014 - 2024)");
+      .attr("font-family", "Formula1, sans-serif")
+      .text("Did Not Finish (DNF) Rates by Constructor and Year (2014 - 2024)");
   }, [heatmapData, selectedYear, selectedConstructors]);
 
   const handleConstructorSelect = (constructorId) => {
@@ -388,13 +390,12 @@ const DnfHeatmap = () => {
         }
       `}</style>
       <div className="checkered-bg p-4 rounded-lg">
-        <h2 className="text-2xl font-bold text-white mb-4">DNF Heatmap</h2>
         <div className="flex justify-start gap-6 mb-6">
           <div className="flex items-center gap-2">
-            <label className="text-white text-lg">Select Year:</label>
+            <label className="text-white text-lg font-[Formula1]">Select Year:</label>
             <div className="dropdown">
               <div
-                className="dropdown-button"
+                className="dropdown-button font-[Formula1]"
                 onClick={() => setIsYearDropdownOpen(!isYearDropdownOpen)}
               >
                 {years.find((y) => y.value === selectedYear)?.label ||

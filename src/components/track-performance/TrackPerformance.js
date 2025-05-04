@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
-import { loadData } from '../../utils/data';  // must return drivers, results, races, circuits, constructors
+import { loadData } from '../../utils/data';
 import * as d3 from 'd3';
 
-const TrackPieChart = () => {
+const TrackPerformance = () => {
   const svgRef = useRef();
 
   // stash raw lookups
@@ -79,8 +79,6 @@ const TrackPieChart = () => {
     if (!performance.length) return;
     const data = performance;
 
-    const { validRaceIds, raceMap } = refs.current;
-
     // clear
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
@@ -111,7 +109,7 @@ const TrackPieChart = () => {
       .style('border','1px solid #ccc')
       .style('border-radius','4px')
       .style('pointer-events','none')
-      .style('font-family','Arial, sans-serif')
+      .style('font-family','Formula1, sans-serif')
       .style('font-size','12px')
       .style('display','none');
 
@@ -146,7 +144,7 @@ const TrackPieChart = () => {
     svg.append('text')
       .attr('x', W/2).attr('y', margin.top/2)
       .attr('text-anchor','middle')
-      .attr('font-family','Arial, sans-serif')
+      .attr('font-family','Formula1, sans-serif')
       .attr('font-weight','bold')
       .attr('font-size','20px')
       .text(`Top 10 Drivers at ${name} (2014–2024)`);
@@ -164,7 +162,7 @@ const TrackPieChart = () => {
           .attr('fill', d => color(d.driverName));
         g.append('text')
           .attr('x',18).attr('y',10)
-          .attr('font-family','Arial, sans-serif')
+          .attr('font-family','Formula1, sans-serif')
           .attr('font-size','12px')
           .text(d => d.driverName);
       });
@@ -178,49 +176,38 @@ const TrackPieChart = () => {
   return (
     <div style={{
       display:'flex',
+      justifyContent:'center',
       alignItems:'flex-start',
       background:'#f5f5f5',
       padding:'40px'
     }}>
       <div style={{ marginRight:'20px' }}>
-        <label htmlFor="track-select" style={{
-          display:'block', marginBottom:'8px',
-          fontFamily:'Arial, sans-serif', fontWeight:'bold'
-        }}>
+        <label htmlFor="track-select"
+        className="block text-sm font-medium text-gray-700 font-[Formula1]" 
+        >
           Select Track:
         </label>
         <select
           id="track-select"
           value={selectedTrack||''}
           onChange={e=>setSelectedTrack(e.target.value)}
-          style={{
-            padding:'10px',fontSize:'14px',width:'220px',
-            fontFamily:'Arial, sans-serif',borderRadius:'6px',
-            border:'1px solid #ccc',background:'#fff',
-            cursor:'pointer'
-          }}
+          className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
         >
           {trackOptions.map(o=>(
             <option key={o.id} value={o.id}>{o.name}</option>
           ))}
         </select>
 
-        <label htmlFor="metric-select" style={{
-          display:'block', margin:'20px 0 8px',
-          fontFamily:'Arial, sans-serif', fontWeight:'bold'
-        }}>
-          Sort/Size By:
+        <label htmlFor="metric-select"
+          className="mt-5 block text-sm font-medium text-gray-700 font-[Formula1]"
+        >
+          Compare By:
         </label>
         <select
           id="metric-select"
           value={metric}
           onChange={e=>setMetric(e.target.value)}
-          style={{
-            padding:'10px',fontSize:'14px',width:'220px',
-            fontFamily:'Arial, sans-serif',borderRadius:'6px',
-            border:'1px solid #ccc',background:'#fff',
-            cursor:'pointer'
-          }}
+          className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
         >
           <option value="avg">Average Points</option>
           <option value="sum">Total Points</option>
@@ -229,7 +216,7 @@ const TrackPieChart = () => {
 
       <svg
         ref={svgRef}
-        width="900"
+        width="1100"
         height="600"
         style={{
           background:'#fff',
@@ -241,4 +228,4 @@ const TrackPieChart = () => {
   );
 };
 
-export default TrackPieChart;
+export default TrackPerformance;

@@ -55,7 +55,7 @@ const ChampionshipBattleTrends = () => {
 
         const svg = d3.select(svgRef.current);
         svg.selectAll('*').remove(); // Clear previous content
-        const margin = { top: 80, right: 200, bottom: 80, left: 80 };
+        const margin = { top: 80, right: 200, bottom: 80, left: 90 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
         const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
@@ -104,7 +104,7 @@ const ChampionshipBattleTrends = () => {
             .attr('y', 50)
             .attr('fill', '#333')
             .attr('font-size', '18px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .text('Race Round');
 
         // Y-axis (inverted: 1 at top)
@@ -117,11 +117,11 @@ const ChampionshipBattleTrends = () => {
                 .tickPadding(10))
             .append('text')
             .attr('transform', 'rotate(-90)')
-            .attr('x', -height / 2 + 60)
+            .attr('x', -height / 2 + 100)
             .attr('y', -50)
             .attr('fill', '#333')
             .attr('font-size', '18px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .text('Championship Position');
 
         // Style gridlines
@@ -141,7 +141,7 @@ const ChampionshipBattleTrends = () => {
             .attr('text-anchor', 'middle')
             .attr('font-size', '28px')
             .attr('font-weight', 'bold')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', '#222')
             .attr('id', 'chart-title')
             .text(`Championship Battle Trends - ${selectedSeason}`);
@@ -152,7 +152,7 @@ const ChampionshipBattleTrends = () => {
             .attr('y', height + margin.top + 75)
             .attr('text-anchor', 'middle')
             .attr('font-size', '16px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', '#666')
             .text('Driver standings evolution over the races of the season');
 
@@ -189,7 +189,7 @@ const ChampionshipBattleTrends = () => {
             .style('border', '1px solid #ccc')
             .style('border-radius', '4px')
             .style('box-shadow', '0 2px 5px rgba(0,0,0,0.2)')
-            .style('font-family', 'Arial, sans-serif')
+            .style('font-family', 'Formula1, sans-serif')
             .style('font-size', '12px')
             .style('display', 'none');
     }, [seasonData]);
@@ -260,7 +260,7 @@ const ChampionshipBattleTrends = () => {
             .attr('text-anchor', 'start')
             .attr('dy', '.35em')
             .attr('font-size', '12px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', d => color(d.driverId))
             .text(d => d.driverName)
             .style('opacity', 0)
@@ -304,12 +304,7 @@ const ChampionshipBattleTrends = () => {
                 <div style={{ marginRight: '20px', marginTop: '10px' }}>
                     <label
                         htmlFor="season-select"
-                        style={{
-                            fontSize: '18px',
-                            fontWeight: 'bold',
-                            fontFamily: 'Arial, sans-serif',
-                            color: '#333'
-                        }}
+                        className="mt-5 block text-sm font-medium text-gray-700 font-[Formula1]"
                     >
                         Select Season:
                     </label>
@@ -317,20 +312,7 @@ const ChampionshipBattleTrends = () => {
                         id="season-select"
                         value={selectedSeason || ''}
                         onChange={(e) => setSelectedSeason(e.target.value)}
-                        style={{
-                            display: 'block',
-                            padding: '14px',
-                            fontSize: '18px',
-                            fontFamily: 'Arial, sans-serif',
-                            borderRadius: '6px',
-                            border: '1px solid #ccc',
-                            background: 'linear-gradient(145deg, #ffffff, #e6e6e6)',
-                            boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
-                            cursor: 'pointer',
-                            width: '240px',
-                            outline: 'none',
-                            transition: 'border-color 0.3s, box-shadow 0.3s'
-                        }}
+                        className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
                         onFocus={(e) => {
                             e.target.style.borderColor = '#4682b4';
                             e.target.style.boxShadow = '0 0 5px rgba(70, 130, 180, 0.5)';
@@ -347,8 +329,8 @@ const ChampionshipBattleTrends = () => {
                 </div>
                 <svg
                     ref={svgRef}
-                    width="1200"
-                    height="700"
+                    width="1100"
+                    height="600"
                     style={{
                         background: '#fff',
                         borderRadius: '8px',

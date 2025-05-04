@@ -33,7 +33,7 @@ const Dropdown = ({ options, selectedOption, onSelect, selectedRaceLabel = null 
       <div>
         <button
           type="button"
-          className="inline-flex justify-center items-center w-60 rounded-md border border-slate-600 shadow-sm px-4 py-2 bg-slate-700 text-sm font-medium text-white hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-yellow-500"
+          className="inline-flex justify-center items-center rounded-md border border-slate-600 shadow-sm px-4 py-2 bg-slate-700 text-sm font-medium font-[Formula1] text-white hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-yellow-500"
           aria-haspopup="true"
           aria-expanded={isOpen ? "true" : "false"}
           onClick={toggleDropdown}

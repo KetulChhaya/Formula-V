@@ -190,7 +190,7 @@ const PodiumSunburst = () => {
     const svg = d3
       .select(svgRef.current)
       .attr("viewBox", [-width / 2, -width / 2, width, width])
-      .style("font", "10px 'Roboto', sans-serif");
+      .style("font", "10px 'Formula1', sans-serif");
 
     svg.selectAll("*").remove();
 
@@ -345,35 +345,13 @@ const PodiumSunburst = () => {
     <div className="max-w-7xl mx-auto flex flex-row gap-8 items-start p-6">
       {/* Left Panel: Filters */}
       <div className="flex flex-col gap-4 w-[250px]">
-        <h2 className="text-xl font-bold text-gray-800">Podium Finishes</h2>
+        <h2 className="text-xl font-bold text-gray-800 font-[Formula1]">Podium Finishes</h2>
 
         <Dropdown
           options={years}
           selectedOption={selectedYear}
           onSelect={setSelectedYear}
         />
-
-        {/* <div className="flex flex-col gap-2">
-          {["P1", "P2", "P3"].map((pos) => (
-            <label
-              key={pos}
-              className="flex items-center text-sm font-medium text-gray-700"
-            >
-              <input
-                type="checkbox"
-                checked={selectedPositions.includes(pos)}
-                onChange={(e) => {
-                  const checked = e.target.checked;
-                  setSelectedPositions((prev) =>
-                    checked ? [...prev, pos] : prev.filter((p) => p !== pos)
-                  );
-                }}
-                className="mr-2 accent-blue-500"
-              />
-              {pos}
-            </label>
-          ))}
-        </div> */}
       </div>
 
       {/* Right Panel: SVG */}

@@ -60,7 +60,7 @@ const ConversionRates = () => {
         if (!circuitData) return;
 
         const svg = d3.select(svgRef.current);
-        const margin = { top: 60, right: 100, bottom: 60, left: 60 };
+        const margin = { top: 60, right: 80, bottom: 60, left: 80 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
         const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
@@ -82,7 +82,7 @@ const ConversionRates = () => {
             .attr('y', 40)
             .attr('fill', '#333')
             .attr('font-size', '14px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .text('Year');
 
         // Y-axis with gridlines and label
@@ -100,7 +100,7 @@ const ConversionRates = () => {
             .attr('y', -40)
             .attr('fill', '#333')
             .attr('font-size', '14px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .text('Conversion Rate (%)');
 
         // Style gridlines
@@ -121,7 +121,7 @@ const ConversionRates = () => {
             .attr('text-anchor', 'middle')
             .attr('font-size', '20px')
             .attr('font-weight', 'bold')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', '#222')
             .attr('id', 'chart-title');
 
@@ -131,7 +131,7 @@ const ConversionRates = () => {
             .attr('y', margin.top + 15)
             .attr('text-anchor', 'end')
             .attr('font-size', '12px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', '#666')
             .attr('id', 'average-rate');
 
@@ -141,7 +141,7 @@ const ConversionRates = () => {
             .attr('y', height + margin.top + 55)
             .attr('text-anchor', 'middle')
             .attr('font-size', '12px')
-            .attr('font-family', 'Arial, sans-serif')
+            .attr('font-family', 'Formula1, sans-serif')
             .attr('fill', '#666')
             .text('Percentage of drivers qualifying in the top 10 who finished in the top 10 each year');
 
@@ -186,7 +186,7 @@ const ConversionRates = () => {
             .style('border', '1px solid #ccc')
             .style('border-radius', '4px')
             .style('box-shadow', '0 2px 5px rgba(0,0,0,0.2)')
-            .style('font-family', 'Arial, sans-serif')
+            .style('font-family', 'Formula1, sans-serif')
             .style('font-size', '12px')
             .style('display', 'none');
     }, [circuitData]);
@@ -197,7 +197,7 @@ const ConversionRates = () => {
 
         const svg = d3.select(svgRef.current);
         const g = svg.select('g');
-        const margin = { top: 60, right: 100, bottom: 60, left: 60 };
+        const margin = { top: 60, right: 80, bottom: 60, left: 80 };
         const width = +svg.attr('width') - margin.left - margin.right;
         const height = +svg.attr('height') - margin.top - margin.bottom;
 
@@ -292,12 +292,7 @@ const ConversionRates = () => {
                 <div style={{ marginRight: '20px', marginTop: '10px' }}>
                     <label 
                         htmlFor="circuit-select" 
-                        style={{ 
-                            fontSize: '14px', 
-                            fontWeight: 'bold', 
-                            fontFamily: 'Arial, sans-serif', 
-                            color: '#333' 
-                        }}
+                        className="block text-sm font-medium text-gray-700 font-[Formula1]"
                     >
                         Select Circuit:
                     </label>
@@ -305,20 +300,7 @@ const ConversionRates = () => {
                         id="circuit-select"
                         value={selectedCircuit || ''}
                         onChange={(e) => setSelectedCircuit(e.target.value)}
-                        style={{
-                            display: 'block',
-                            padding: '10px',
-                            fontSize: '14px',
-                            fontFamily: 'Arial, sans-serif',
-                            borderRadius: '6px',
-                            border: '1px solid #ccc',
-                            background: 'linear-gradient(145deg, #ffffff, #e6e6e6)',
-                            boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
-                            cursor: 'pointer',
-                            width: '200px',
-                            outline: 'none',
-                            transition: 'border-color 0.3s, box-shadow 0.3s'
-                        }}
+                        className="mt-1 block w-48 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 font-[Formula1]"
                         onFocus={(e) => {
                             e.target.style.borderColor = '#4682b4';
                             e.target.style.boxShadow = '0 0 5px rgba(70, 130, 180, 0.5)';
@@ -337,8 +319,8 @@ const ConversionRates = () => {
                 </div>
                 <svg 
                     ref={svgRef} 
-                    width="800" 
-                    height="400" 
+                    width="1100" 
+                    height="600" 
                     style={{ 
                         background: '#fff', 
                         borderRadius: '8px', 

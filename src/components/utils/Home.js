@@ -59,7 +59,7 @@ const Home = () => {
   return (
     <div
       className="bg-gradient-to-r from-black to-slate-900 text-white font-[Formula1] m-auto"
-      style={{ minHeight: "150vh" }}
+      style={{ minHeight: "175vh" }}
     >
       <div className="max-w-7xl m-auto pt-10">
         <div className="text-white-500 text-center">
@@ -67,12 +67,37 @@ const Home = () => {
             🏁 Welcome to Formula V: A Visual Journey Through Formula 1
           </h1>
           <p className="text-xl mb-4">
-            Whether you’re a lifelong fan or new to the world of Formula 1, this
-            site offers a data-driven look into the sport’s most exciting
-            stories. Explore interactive visualizations that uncover driver
-            performances, team rivalries, race-day drama, and long-term trends
-            across seasons. From qualifying to podiums, from dominance to
-            heartbreaks — dive into the numbers that shaped F1 history.
+            Formula 1 is more than just lap times and podiums — it’s a complex,
+            high-speed narrative of performance, strategy, and resilience. Formula V
+            is an interactive data visualization platform designed for
+            F1 fans and enthusiasts seeking to dig deeper into the dynamics of
+            the sport.
+            <br />
+            <br />
+            Through a series of intuitive, visually-rich dashboards, our system
+            helps you:
+            <br />
+            <ul className="list-disc list-inside text-left mx-auto max-w-3xl">
+              <li>
+                🔍 Compare driver and team performances across races and seasons
+              </li>
+              <li>
+                📊 Visualize key strategies like qualifying results, race-day
+                positions, and pit reliability
+              </li>
+              <li>
+                ⏱️ Understand race dynamics, including overtakes, gaps, and
+                breakdown trends
+              </li>
+              <li>
+                📈 Spot patterns in driver consistency, team dominance, and
+                track performance
+              </li>
+              <li>
+                🎥 Replay championship battles and race outcomes from a fresh,
+                analytical perspective
+              </li>
+            </ul>
           </p>
         </div>
 

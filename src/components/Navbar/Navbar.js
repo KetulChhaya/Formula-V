@@ -28,7 +28,7 @@ export default function Navbar() {
           </button>
           {/* Logo */}
           <Link to={"/"}>
-            <div className="text-3xl font-formula1 text-white-700 flex items-center transform transition duration-300 hover:scale-105">
+            <div className="text-3xl font-[Formula1] text-white-700 flex items-center transform transition duration-300 hover:scale-105">
               Formula V   <GiF1Car size={"2.75em"} />
             </div>
           </Link>

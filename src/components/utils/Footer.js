@@ -31,8 +31,21 @@ export default function Footer() {
           <span className="hover:text-gray-300 transition">Tanmay</span>
         </div>
 
-        {/* Bottom Text */}
+        {/* Dataset Reference */}
         <p className="text-sm text-gray-300 mt-4">
+          Dataset:{" "}
+          <a
+            href="https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020"
+            className="underline hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Formula 1 World Championship (1950 - 2024)
+          </a>
+        </p>
+
+        {/* Bottom Text */}
+        <p className="text-sm text-gray-300 mt-2">
           © {new Date().getFullYear()} Formula V Racing. All rights reserved.
         </p>
       </div>

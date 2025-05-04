@@ -115,8 +115,8 @@ const DriverContributions2 = () => {
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
 
-    const width = 600;
-    const height = 600;
+    const width = 700;
+    const height = 700;
     const outerRadius = 220;
     const innerRadius = 100;
 
@@ -342,7 +342,10 @@ const DriverContributions2 = () => {
   }, [selectedYear, selectedConstructor]);
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100" style={{marginTop: "-5rem"}}>
+    <div
+      className="flex justify-center items-center h-screen bg-gray-100"
+      style={{ marginTop: "-3rem" }}
+    >
       <div className="flex flex-col items-center">
         <div className="flex space-x-4 mb-4">
           <div>
@@ -387,12 +390,19 @@ const DriverContributions2 = () => {
             </select>
           </div>
         </div>
-        <svg
-          ref={svgRef}
-          width="600"
-          height="600"
-          className="bg-white rounded-lg shadow-lg"
-        ></svg>
+        <div className="flex flex-col" style={{ maxWidth: "700px" }}>
+          <svg
+            ref={svgRef}
+            width="700"
+            height="700"
+            className="bg-white rounded-lg shadow-lg"
+          ></svg>
+          <h3 className="font-[Formula1] mt-5 justify-center text-center">
+            How much did each driver contribute to their team’s success? This
+            visualization breaks down the share of points scored by each
+            teammate — revealing team dynamics and standout individual efforts.
+          </h3>
+        </div>
       </div>
     </div>
   );

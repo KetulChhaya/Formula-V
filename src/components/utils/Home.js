@@ -4,19 +4,15 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const tiles = [
     {
-      title: "Constructor Dominance",
-      description: "See which teams ruled the track each season!",
-      route: "/constructor-dominance",
-    },
-    {
       title: "Conversion Rates",
       description: "From pole to podium: who kept their cool under pressure?",
       route: "/conversion-rates",
     },
     {
-      title: "Championship Battle Trends",
-      description: "Watch the title fight unfold race by race!",
-      route: "/championship-battle-trends",
+      title: "Winning Margins",
+      description:
+        "Race to the Finish: Uncover the Thrilling Margins of Victory in Formula 1’s Closest Battles!",
+      route: "/winning-margins",
     },
     {
       title: "Qualifying to Final Perfomance",
@@ -25,10 +21,26 @@ const Home = () => {
       route: "/qualifying-to-final-position",
     },
     {
+      title: "Championship Battle Trends",
+      description: "Watch the title fight unfold race by race!",
+      route: "/championship-battle-trends",
+    },
+    {
+      title: "Driver Contributions",
+      description: "Team players or lone wolves: who drove the points home?",
+      route: "/driver-contributions",
+    },
+    {
       title: "Podium Finishes",
       description: "Spotlight on the stars: every podium, every race!",
       route: "/podium-finishes",
     },
+    {
+      title: "Constructor Dominance",
+      description: "See which teams ruled the track each season!",
+      route: "/constructor-dominance",
+    },
+
     {
       title: "Career Progression",
       description: "Chart a driver's rise to fame, season by season.",
@@ -44,17 +56,6 @@ const Home = () => {
       description: "When the going got tough: teams' breakdown battles.",
       route: "/dnf-heatmap",
     },
-    {
-      title: "Driver Contributions",
-      description: "Team players or lone wolves: who drove the points home?",
-      route: "/driver-contributions",
-    },
-    {
-      title: "Winning Margins",
-      description:
-        "Race to the Finish: Uncover the Thrilling Margins of Victory in Formula 1’s Closest Battles!",
-      route: "/winning-margins",
-    },
   ];
   return (
     <div
@@ -62,7 +63,7 @@ const Home = () => {
       style={{ minHeight: "175vh" }}
     >
       <div className="max-w-7xl m-auto pt-10">
-        <div className="text-white-500 text-center">
+        <div className="text-white-500 text-center mb-10 mt-5">
           <h1 className="text-4xl font-bold mb-6">
             🏁 Welcome to Formula V: A Visual Journey Through Formula 1
           </h1>
@@ -101,9 +102,13 @@ const Home = () => {
           </p>
         </div>
 
-        <h1 className="text-3xl font-bold mt-10 mb-10 text-white-500 text-center uppercase">
+        <hr className="border-t-2 border-red-500 mb-5" />
+
+        <h1 className="text-3xl font-bold mt-5 mb-5 text-white-500 text-center uppercase">
           F1 Data Visualizations
         </h1>
+
+        <hr className="border-t-2 border-red-500 mt-5 mb-10" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tiles.map((tile) => (

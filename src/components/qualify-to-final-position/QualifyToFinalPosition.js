@@ -387,8 +387,9 @@ const QualifyToFinalPosition = () => {
             />
           </div>
         </div>
-      <div className="w-full m-auto text-center flex justify-center">
+      <div className="w-full m-auto text-center flex justify-center flex-col" style={{maxWidth: "1200px"}}>
         <svg ref={svgRef} width={width} height={height}></svg>
+        <h3 className="font-[Formula1] mb-10 justify-center text-center" >This Sankey diagram maps where each driver started (qualifying) versus where they finished (race result). It reveals dramatic climbs, big drops, and who held their ground — a visual story of the race in one chart</h3>
       </div>
       </div>
     </div>

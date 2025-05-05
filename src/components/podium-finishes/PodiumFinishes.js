@@ -21,6 +21,8 @@ async function getSunburstPodiumData() {
     const driverName = driverMap.get(res.driverId) || "Unknown";
     const position = `P${res.positionOrder}`;
     const race = raceMap.get(res.raceId);
+    const raceYear = parseInt(race?.year, 10);
+    if (raceYear < 2014) continue;
     const raceLabel = `${race?.year} ${race?.name}`;
 
     if (!hierarchy[driverName]) hierarchy[driverName] = {};
@@ -267,7 +269,7 @@ const PodiumSunburst = () => {
       .attr("fill-opacity", (d) => +labelVisible(d.current))
       .attr("transform", (d) => labelTransform(d.current))
       .attr("font-size", (d) => (d.depth === maxDepth ? "8px" : "10px"))
-      .text((d) => d.data.name);
+      .text((d) => d.data.name.replace(/^\d{4}\s*/, ""));
 
     const parent = svg
       .append("circle")

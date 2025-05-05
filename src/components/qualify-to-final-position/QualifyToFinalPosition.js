@@ -3,9 +3,7 @@ import * as d3 from "d3";
 import { sankey, sankeyLinkHorizontal, sankeyJustify } from "d3-sankey";
 import { loadData } from "../../utils/data";
 import Dropdown from "../utils/Dropdown";
-import { constructorColors } from "../../utils/generateColorPallete";
-
-const constructorColorMap = new Map();
+import { constructorColorMap } from "../../utils/utils";
 
 const QualifyToFinalPosition = () => {
   const svgRef = useRef();
@@ -26,27 +24,22 @@ const QualifyToFinalPosition = () => {
   useEffect(() => {
     loadData().then(({ races, drivers, qualifying, results, constructors }) => {
       console.log("Races", races);
-      const defaultYearRaces = races.filter((r) => r.year === selectedYear);
+      // Filtered to include only from 2014 onwards
+      const filteredRaces = races.filter((r) => parseInt(r.year) >= 2014);
+      const defaultYearRaces = filteredRaces.filter((r) => r.year === selectedYear);
       setRaces(defaultYearRaces);
-
-      // Suppose you have a list of constructors
-      constructors.forEach((name, index) => {
-        constructorColorMap.set(name.constructorId, constructorColors[index]);
-      });
-
-      console.log("Constructors", constructorColorMap);
-
-      // Extract unique years from races
-      const uniqueYears = Array.from(new Set(races.map((r) => r.year))).sort(
+  
+      // Extracted unique years from filtered races (2014 onwards)
+      const uniqueYears = Array.from(new Set(filteredRaces.map((r) => r.year))).sort(
         (a, b) => b - a
       );
-      setAllRaces(races);
+      setAllRaces(filteredRaces);
       setYears(uniqueYears);
       setDrivers(drivers);
       setQualifying(qualifying);
       setResults(results);
       setConstructors(constructors);
-
+  
       console.log("Constructors Length", constructors.length, constructors);
     });
   }, []);
@@ -130,7 +123,7 @@ const QualifyToFinalPosition = () => {
       })
       .extent([
         [1, 30],
-        [width - 1, height - 6],
+        [width - 1, height - 10],
       ]);
 
     const graph = sankeyLayout({
@@ -146,7 +139,7 @@ const QualifyToFinalPosition = () => {
       drivers.map((d) => [d.driverId, `${d.forename} ${d.surname}`])
     );
 
-    // Create driverId -> driverName map
+    // driverId -> driverName map
     const driverNameMap = new Map();
     graph.links.forEach((link) => {
       if (link.driverId && link.target?.name) {
@@ -154,7 +147,7 @@ const QualifyToFinalPosition = () => {
       }
     });
 
-    // Create node name -> constructorId map (for team logos)
+    // node name -> constructorId map (not used in the diagram)
     const teamMap = new Map();
     graph.links.forEach((link) => {
       if (link.constructorId && link.source?.name) {
@@ -181,7 +174,7 @@ const QualifyToFinalPosition = () => {
       .attr("fill", "none")
       .attr("stroke", (d) => {
         const constructorName = constructorNameMap.get(d.constructorId);
-        return constructorColorMap.get(d.constructorId) || "#888";
+        return constructorColorMap[d.constructorId] || "#888";
       })
       .attr("stroke-width", (d) => Math.max(1, d.width))
       .attr("opacity", 0.7)
@@ -249,21 +242,6 @@ const QualifyToFinalPosition = () => {
 
     const qNodes = graph.nodes.filter((d) => d.name.startsWith("Q"));
     console.log("Qualifying nodes for logo:", qNodes);
-
-    svg
-      .append("g")
-      .selectAll("image.left-logo")
-      .data(qNodes)
-      .join("image")
-      .attr("class", "left-logo")
-      .attr(
-        "xlink:href",
-        "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=pexels-souvenirpixels-414612.jpg&fm=jpg"
-      )
-      .attr("x", (d) => d.x0 - 40)
-      .attr("y", (d) => (d.y0 + d.y1) / 2 - 10)
-      .attr("width", 20)
-      .attr("height", 20);
 
     // Node labels - Positions
     svg
@@ -355,7 +333,7 @@ const QualifyToFinalPosition = () => {
   return (
     <div>
       <div className="max-w-7xl m-auto mt-10">
-        <h2 className="h2 font-sans text-2xl font-bold text-slate-950 font-[Formula1]">
+        <h2 className="h2 text-2xl font-bold text-slate-950 font-[Formula1]">
           🥇 Where You Start Isn’t Always Where You Finish
         </h2>
         <div className="flex justify-start gap-10">

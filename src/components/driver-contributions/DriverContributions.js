@@ -15,12 +15,12 @@ const DriverContributions2 = () => {
     1: "#FF8700", // McLaren
     6: "#FF1801", // Ferrari
     9: "#1B3F8B", // Red Bull
-    131: "#C0C0C0", // Mercedes
+    131: "#A7A7A7", // Mercedes
     3: "#37A7D8", // Williams
     214: "#0093C7", // Alpine
     210: "#4B4B4B", // Haas
     51: "#960000", // Alfa Romeo
-    213: "#F4F4F4", // AlphaTauri
+    213: "#20394C", // AlphaTauri
     117: "#2D8265", // Aston Martin
     4: "#000000", // Renault
     5: "#A39064", // Toro Rosso
@@ -342,10 +342,7 @@ const DriverContributions2 = () => {
   }, [selectedYear, selectedConstructor]);
 
   return (
-    <div
-      className="flex justify-center items-center h-screen bg-gray-100"
-      style={{ marginTop: "-3rem" }}
-    >
+    <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="flex flex-col items-center">
         <div className="flex space-x-4 mb-4">
           <div>

@@ -396,7 +396,7 @@ const DnfHeatmap = () => {
             <label className="text-white text-lg font-[Formula1]">
               Select Year:
             </label>
-            <div className="dropdown">
+            <div className="dropdown ">
               <div
                 className="dropdown-button font-[Formula1]"
                 onClick={() => setIsYearDropdownOpen(!isYearDropdownOpen)}
@@ -423,10 +423,10 @@ const DnfHeatmap = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-white text-lg">Select Constructors:</label>
+            <label className="text-white text-lg font-[Formula1]">Select Constructors:</label>
             <div className="dropdown">
               <div
-                className="dropdown-button"
+                className="dropdown-button font-[Formula1]"
                 onClick={() =>
                   setIsConstructorDropdownOpen(!isConstructorDropdownOpen)
                 }

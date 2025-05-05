@@ -166,19 +166,6 @@ const ConversionRates = () => {
       .attr("fill", "#666")
       .attr("id", "average-rate");
 
-    // Add caption at the bottom
-    svg
-      .append("text")
-      .attr("x", margin.left + width / 2)
-      .attr("y", height + margin.top + 55)
-      .attr("text-anchor", "middle")
-      .attr("font-size", "12px")
-      .attr("font-family", "Formula1, sans-serif")
-      .attr("fill", "#666")
-      .text(
-        "Percentage of drivers qualifying in the top 10 who finished in the top 10 each year"
-      );
-
     // Add background gradient
     const defs = svg.append("defs");
     defs

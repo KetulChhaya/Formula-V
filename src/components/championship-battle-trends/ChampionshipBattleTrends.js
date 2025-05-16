@@ -51,7 +51,11 @@ const ChampionshipBattleTrends = () => {
         );
         return standing ? standing.position : null;
       });
-      return { driverId, driverName, positions };
+      // Get cluster from any standing in this season (consistent per season)
+      const cluster = driverStandings.find(
+        (ds) => ds.driverId === driverId && raceIds.includes(ds.raceId)
+      ).cluster;
+      return { driverId, driverName, positions, cluster };
     });
 
     setSeasonData({ races: filteredRaces, drivers: standingsData });
@@ -62,7 +66,7 @@ const ChampionshipBattleTrends = () => {
     if (!seasonData) return;
 
     const svg = d3.select(svgRef.current);
-    svg.selectAll("*").remove(); // Clear previous content
+    svg.selectAll("*").remove();
     const margin = { top: 80, right: 200, bottom: 80, left: 90 };
     const width = +svg.attr("width") - margin.left - margin.right;
     const height = +svg.attr("height") - margin.top - margin.bottom;
@@ -70,7 +74,6 @@ const ChampionshipBattleTrends = () => {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Dynamically calculate the maximum number of drivers
     const yDomainMax = Math.max(seasonData.drivers.length, 20);
 
     const x = d3
@@ -79,13 +82,45 @@ const ChampionshipBattleTrends = () => {
       .range([0, width]);
     const y = d3.scaleLinear().domain([1, yDomainMax]).range([0, height]);
 
-    // Add background highlights for top 3 positions
-    const highlightHeight = y(2) - y(1); // Height of one position slot
-    const highlights = [
-      { position: 1, color: "gold", opacity: 0.3 },
-      { position: 2, color: "silver", opacity: 0.25 },
-      { position: 3, color: "#cd7f32", opacity: 0.2 }, // Bronze
-    ];
+    // Cluster-based highlights
+    const lastRaceId = seasonData.races[seasonData.races.length - 1].raceId;
+    const lastStandings = driverStandings.filter(
+      (ds) => ds.raceId === lastRaceId
+    );
+    const clusterPositions = {};
+    seasonData.drivers.forEach((driver) => {
+      const standing = lastStandings.find(
+        (ds) => ds.driverId === driver.driverId
+      );
+      if (standing) {
+        const cluster = driver.cluster;
+        if (!clusterPositions[cluster]) clusterPositions[cluster] = [];
+        clusterPositions[cluster].push(standing.position);
+      }
+    });
+
+    const highlights = Object.keys(clusterPositions).map((cluster) => {
+      const positions = clusterPositions[cluster];
+      return {
+        cluster,
+        minPos: Math.min(...positions),
+        maxPos: Math.max(...positions),
+      };
+    });
+
+    // Assign colors based on average position (lower is better)
+    const clusterOrder = highlights
+      .map((h) => ({
+        cluster: h.cluster,
+        avgPos:
+          clusterPositions[h.cluster].reduce((a, b) => a + b, 0) /
+          clusterPositions[h.cluster].length,
+      }))
+      .sort((a, b) => a.avgPos - b.avgPos);
+    const colors = ["gold", "silver", "#cd7f32"]; // Top, Midfield, Backmarkers
+    clusterOrder.forEach((co, i) => {
+      highlights.find((h) => h.cluster === co.cluster).color = colors[i];
+    });
 
     g.append("g")
       .attr("class", "highlights")
@@ -94,11 +129,11 @@ const ChampionshipBattleTrends = () => {
       .enter()
       .append("rect")
       .attr("x", 0)
-      .attr("y", (d) => y(d.position) - highlightHeight / 2)
+      .attr("y", (d) => y(d.minPos - 0.5))
       .attr("width", width)
-      .attr("height", highlightHeight)
+      .attr("height", (d) => y(d.maxPos + 0.5) - y(d.minPos - 0.5))
       .attr("fill", (d) => d.color)
-      .attr("opacity", (d) => d.opacity);
+      .attr("opacity", 0.2);
 
     // X-axis
     g.append("g")
@@ -119,7 +154,7 @@ const ChampionshipBattleTrends = () => {
       .attr("font-family", "Formula1, sans-serif")
       .text("Race Round");
 
-    // Y-axis (inverted: 1 at top)
+    // Y-axis
     g.append("g")
       .attr("class", "y-axis")
       .call(
@@ -154,7 +189,7 @@ const ChampionshipBattleTrends = () => {
     svg
       .append("text")
       .attr("x", margin.left + width / 2)
-      .attr("y", margin.top / 2)
+      .attr("y", margin.top / 2 - 5)
       .attr("text-anchor", "middle")
       .attr("font-size", "28px")
       .attr("font-weight", "bold")
@@ -163,7 +198,54 @@ const ChampionshipBattleTrends = () => {
       .attr("id", "chart-title")
       .text(`Championship Battle Trends - ${selectedSeason}`);
 
-    // Color scale
+    // Legend
+    const legendData = [
+      { label: "Top Performers", color: "gold" },
+      { label: "Midfield", color: "silver" },
+      { label: "Backmarkers", color: "#cd7f32" },
+    ];
+
+    const legend = svg
+      .append("g")
+      .attr("class", "legend")
+      .attr("transform", `translate(700, 50)`);
+
+    const legendItems = legend
+      .selectAll(".legend-item")
+      .data(legendData)
+      .enter()
+      .append("g")
+      .attr("class", "legend-item")
+      .attr("transform", `translate(0, 0)`);
+
+    legendItems
+      .append("rect")
+      .attr("x", 0)
+      .attr("y", -7.5)
+      .attr("width", 15)
+      .attr("height", 15)
+      .attr("fill", (d) => d.color);
+
+    const texts = legendItems
+      .append("text")
+      .attr("x", 20)
+      .attr("y", 0)
+      .attr("dy", "0.35em")
+      .text((d) => d.label)
+      .attr("font-size", "12px")
+      .attr("font-family", "Formula1, sans-serif")
+      .attr("fill", "#333");
+
+    let currentX = 0;
+    const gap = 20; // Gap between legend items
+    legendItems.each(function(d, i) {
+      const textWidth = texts.nodes()[i].getComputedTextLength();
+      const itemWidth = 15 + 5 + textWidth;
+      d3.select(this).attr("transform", `translate(${currentX}, 0)`);
+      currentX += itemWidth + gap;
+    });
+    
+      // Color scale
     const color = d3
       .scaleOrdinal(d3.schemeCategory10)
       .domain(seasonData.drivers.map((d) => d.driverId));
@@ -181,7 +263,7 @@ const ChampionshipBattleTrends = () => {
       .attr("stroke-width", 2)
       .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))");
 
-    // Labels group for end of lines
+    // Labels group
     g.append("g").attr("class", "labels-end");
 
     // Tooltip
@@ -212,7 +294,6 @@ const ChampionshipBattleTrends = () => {
     const width = +svg.attr("width") - margin.left - margin.right;
     const height = +svg.attr("height") - margin.top - margin.bottom;
 
-    // Dynamically calculate the maximum number of drivers
     const yDomainMax = Math.max(seasonData.drivers.length, 20);
 
     const x = d3
@@ -230,7 +311,7 @@ const ChampionshipBattleTrends = () => {
       .select("#chart-title")
       .text(`Championship Battle Trends - ${selectedSeason}`);
 
-    // Update lines with animation from first to last round
+    // Update lines
     const line = d3
       .line()
       .x((d, i) => x(i + 1))
@@ -247,27 +328,26 @@ const ChampionshipBattleTrends = () => {
       .attr("d", (d) => line(d.positions))
       .attr("stroke", (d) => color(d.driverId));
 
-    // Animate lines from first to last round
+    // Animate lines
     lines.each(function () {
       const totalLength = this.getTotalLength();
       d3.select(this)
         .attr("stroke-dasharray", `${totalLength} ${totalLength}`)
         .attr("stroke-dashoffset", totalLength)
         .transition()
-        .duration(3000) // 3 seconds animation
+        .duration(3000)
         .attr("stroke-dashoffset", 0);
     });
 
-    // Add labels at the end of each line
-    const labelOffset = 10; // Small offset to avoid overlap with the line
-
+    // Update labels
+    const labelOffset = 10;
     g.select(".labels-end")
       .selectAll(".label-end")
       .data(
         seasonData.drivers.filter(
           (d) => d.positions[d.positions.length - 1] !== null
         )
-      ) // Only label drivers with a position in the last round
+      )
       .join("text")
       .attr("class", "label-end")
       .attr("x", x(seasonData.races.length) + labelOffset)
@@ -296,11 +376,11 @@ const ChampionshipBattleTrends = () => {
             .style("display", "block")
             .html(
               `
-                            <strong>${d.driverName}</strong><br>
-                            Race: ${raceName}<br>
-                            Race Round: ${raceRound}<br>
-                            Position: ${position}
-                        `
+                <strong>${d.driverName}</strong><br>
+                Race: ${raceName}<br>
+                Race Round: ${raceRound}<br>
+                Position: ${position}
+              `
             )
             .style("left", `${event.pageX + 10}px`)
             .style("top", `${event.pageY - 30}px`);
